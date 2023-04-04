@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Survey Results{% endblock %}
+{% block content %}
+
+<body>
+    <!-- breadcumb-area -->
+    <div class="breadcumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 txtc  text-center ccase">
+                    <div class="brpt">
+                        <h2>О нас</h2>
+                    </div>
+                    <div class="breadcumb-inner">
+                        <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><i class="fas fa-angle-right"></i></li>
+                            <li>О нас</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hisfull_about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                </div>
+            </div>
+
+            <head>
+                <meta charset="UTF-8">
+                <title>Отправка формы и файлов в телеграм-бота</title>
+
+            </head>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/contacts.css') }}">
+
+            <h1>Отправка формы и файлов в телеграм-бота</h1>
+            <form method="POST" enctype="multipart/form-data">
+                <label>ФИО:</label>
+                <input type="text" name="name" required>
+
+                <label>Почта:</label>
+                <input type="email" name="email" required>
+
+                <label>Сообщение:</label>
+                <textarea name="message" required></textarea>
+
+                <label>Файл:</label>
+                <input type="file" name="file">
+
+                <input type="submit" value="Отправить">
+            </form>
+
+        </div>
+    </div>
+
+</body>
+
+
+
+
+
+{% endblock %}

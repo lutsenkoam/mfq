@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+
+{% block title %}FAAM{% endblock %}
+{% block content %}
+
+
+<style>
+    p {
+        text-align: center;
+        font-size: 18px;
+
+    }
+
+    #accordion {
+        text-align: center;
+    }
+
+    #question {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+    .exercise-table {
+        width: 100%;
+        margin-bottom: 20px;
+        overflow-x: auto;
+
+    }
+
+    .exercise-table th,
+    .exercise-table td {
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+    }
+
+    .exercise-table th {
+        background-color: #f2f2f2;
+    }
+
+    .exercise-table td label {
+        display: inline-block;
+        background-color: #fff;
+        color: #0d6efd;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 10px 20px;
+        border: 1px solid #337ab7;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .exercise-table td label:hover {
+        background-color: #337ab7;
+        color: #fff;
+    }
+
+    .exercise-table td input[type="radio"] {
+        display: none;
+    }
+
+    .exercise-table td input[type="radio"]:checked+label {
+        background-color: #337ab7;
+        color: #fff;
+        border-color: #337ab7;
+    }
+
+    .exercise-table::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    .exercise-table::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .exercise-table::-webkit-scrollbar-thumb {
+        background-color: #ccc;
+        border-radius: 20px;
+        border: 3px solid #f1f1f1;
+    }
+
+    .exercise-table::-webkit-scrollbar-thumb:hover {
+        background-color: #aaa;
+    }
+
+
+
+
+
+
+    /* #### */
+    /* стили для контейнера группы кнопок */
+    .btn-group {
+        display: block;
+        margin-bottom: 15px;
+
+    }
+
+    /* стили для каждой кнопки */
+    .btn-group input[type="radio"] {
+        display: none;
+        /* скрываем оригинальный элемент input */
+    }
+
+    .btn-group label {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        box-sizing: border-box;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+    }
+
+    /* стили для выбранной кнопки */
+    .btn-group input[type="radio"]:checked+label {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        color: #fff;
+    }
+
+    /* стили для первой кнопки */
+    .btn-group label:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    /* стили для последней кнопки */
+    .btn-group label:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* стили для всех кнопок, кроме первой и последней */
+    .btn-group label:not(:first-child):not(:last-child) {
+        border-radius: 0;
+        margin-left: -1px;
+    }
+
+    /* стили для группы кнопок с вертикальным расположением */
+    .btn-group-vertical label {
+        margin-bottom: -1px;
+    }
+
+    /* стили для группы кнопок с горизонтальным расположением */
+    .btn-group-horizontal label {
+        margin-right: -1px;
+    }
+
+    #result {
+        text-align: left;
+        margin: auto;
+        max-width: 500px;
+        /* Желаемая максимальная ширина блока */
+    }
+
+    .body {
+        color: black;
+        font-weight: bold;
+    }
+
+    .container {
+        max-width: 960px;
+        /* задаем максимальную ширину контейнера */
+        margin: 0 auto;
+        /* центрируем контейнер */
+        text-align: center;
+        /* выравниваем содержимое контейнера по центру */
+    }
+
+
+
+    /* Для разрешения 375px */
+    @media (min-width: 360px) and (max-width: 767px) {
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+
+        }
+
+
+
+        .survey-form {
+
+            /* задаем максимальную ширину контейнера */
+            margin: 10% auto;
+            /* центрируем контейнер */
+            /* text-align: center; */
+            /* выравниваем содержимое контейнера по центру */
+            max-width: 100%;
+            /* word-wrap: break-word; */
+        }
+
+        .hisfull_about_area {
+            text-align: center;
+            padding: 10px 0px 10px;
+        }
+
+        .survey-form {
+            padding: 5px;
+        }
+
+        h1,
+        h2,
+        p {
+            font-size: 16px;
+        }
+
+        h4 {
+            font-size: 13px;
+        }
+
+        .exercise-table td label {
+            font-size: 14px;
+        }
+
+        .btn-group label {
+            font-size: 10px;
+            padding: 5px 10px;
+            text-align: left;
+        }
+
+        #result {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .btn {
+
+            font-size: 10px;
+        }
+
+        .horizontal-scroll-wrapper {
+            width: auto;
+            height: auto;
+            overflow-y: auto;
+            overflow-x: auto;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            width: 100px;
+            height: 100px;
+
+
+        }
+
+        .horizontal-scroll-wrapper {
+            transform: rotate(-360deg);
+            transform-origin: right top;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            transform: rotate(90deg);
+            transform-origin: right top;
+
+        }
+
+        table {
+
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 12px;
+            line-height: 2;
+            margin: 0 0 20px;
+            width: 100%;
+            color: black;
+        }
+
+
+    }
+
+    /* Медиа-запрос для устройств с шириной экрана больше 1024px */
+
+
+    @media (min-width: 768px) and (max-width: 4000px) {
+        .hisfull_about_area {
+            text-align: center;
+            padding: 18px 0px 10px;
+        }
+
+        .survey-form {
+            max-width: 960px;
+            /* задаем максимальную ширину контейнера */
+            margin: 0 auto;
+            /* центрируем контейнер */
+            text-align: center;
+            /* выравниваем содержимое контейнера по центру */
+        }
+
+
+
+
+
+        .horizontal-scroll-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: auto;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            width: 100px;
+            height: 100px;
+
+
+        }
+
+        .horizontal-scroll-wrapper {
+            transform: rotate(-360deg);
+            transform-origin: right top;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            transform: rotate(90deg);
+            transform-origin: right top;
+
+        }
+
+        table {
+
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 12px;
+            line-height: 2;
+            margin: 0 0 20px;
+            width: 100%;
+            color: black;
+        }
+
+        .exercise-table th,
+        .exercise-table td {
+            padding-top: 10px;
+            padding-right: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        #date_ikdc_br {
+            display: none;
+        }
+
+        #date_br {
+            display: none;
+        }
+    }
+</style>
+
+
+<body>
+
+    <div class="breadcumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 txtc  text-center ccase">
+                    <div class="brpt">
+                        <h2>IKDC</h2>
+                    </div>
+                    <div class="breadcumb-inner">
+                        <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><i class="fas fa-angle-right"></i></li>
+                            <li>IKDC</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hisfull_about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="survey-form">
+        <div class="ikdc_form">
+            <h1>2000 IKDC SUBJECTIVE KNEE EVALUATION FORM</h1>
+            <div id="accordion">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                aria-expanded="false" aria-controls="collapseOne">
+                                О шкале
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
+                            Первоначально опубликованный в 2005 году в журнале Foot and Ankle International , Измеритель
+                            способностей стопы и голеностопного сустава (FAAM) был разработан для оценки физической
+                            функции людей с нарушениями опорно-двигательного аппарата голени, стопы и голеностопного
+                            сустава.
+                            The FAAM is a patient-completed instrument that consists of an “Activities of Daily Living”
+                            subscale (21 scored items) and a “Sports” subscale (7 scored items) in which the response
+                            options are presented as 5-point Likert scales (range 4 to 0). Scores for each subscale
+                            range from 0% (least function) to 100% (most function).
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                Вспомогательная литература
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
+                            Оригинальная литература:
+                            Мартин, Роброй Л. и др. «Доказательства достоверности измерения способности стопы и
+                            голеностопного сустава (FAAM)». Foot [& Ankle International 26.11 (2005): 968-983.
+                            Дополнительная литература:
+                            Мартин, Роброй Л. и Джеймс Дж. Ирганг. «Обзор инструментов для самооценки результатов для
+                            стопы и лодыжки». Журнал ортопедической и спортивной физиотерапии 37.2 (2007): 72-84.
+                            Косби, Николь Л. и Джей Хертел. «Клиническая оценка результатов травм голеностопного
+                            сустава: сценарий с использованием измерения способности стопы и голеностопного сустава».
+                            Журнал спортивной реабилитации 20.1 (2011): 89-99.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                                aria-expanded="false" aria-controls="collapseThree">
+                                О разработчике партитуры
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div class="card-body">
+                            Доктор Джесси Ван Сверинген является адъюнкт-профессором кафедры физиотерапии Школы
+                            здравоохранения и реабилитации Университета Питтсбурга и возглавляет исследовательский
+                            комитет Академии гериатрии Американской ассоциации физиотерапии.
+                            Чтобы просмотреть его публикации, посетите PubMed .
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <h2>Введите ФИО</h2>
+            <br>
+            <form id="myForm_ikdc_name">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName" placeholder="Имя" aria-label="Имя">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName_sur" placeholder="Отчество"
+                            aria-label="Отчество">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName_pat" placeholder="Фамилия"
+                            aria-label="Фамилия">
+                    </div>
+                </div>
+                <br>
+                <label for="date">Дата рождения:</label>
+                <input type="date" id="date_ikdc" name="date"><br id="date_br">
+                <label for="date">Дата заполнения:</label>
+                <input type="date" id="date_in_ikdc" name="date"><br id="date_ikdc_br">
+                <label for="date">Дата травмы:</label>
+                <input type="date" id="date_damage_ikdc" name="date"><br><br>
+                <br>
+                <h2>Коленный сустав:</h2>
+                <div class="btn-group">
+                    <div id="question">
+                        <input type="radio" name="choice" value="Левый" id="left" />
+                        <label for="left">Левый</label>
+                        <input type="radio" name="choice" value="Правый" id="right" />
+                        <label for="right">Правый</label>
+                    </div>
+                </div>
+
+
+                <br>
+                <h2>СИМПТОМЫ*
+                    *Оцените, пожалуйста, с Вашей точки зрения максимальный уровень Вашей активности без
+                    возникновения явных жалоб на коленный сустав (даже если Вы не занимаетесь спортом на этом
+                    уровне).
+                </h2>
+                <hr>
+                <h4>1. Каков максимальный уровень физической активности, который вы можете выполнять без значимой
+                    боли в коленных суставах:</h4>
+                <br>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio1" name="question01" value="4">
+                    <label for="btnradio1">Очень высокий уровень спортивной активности, включающий прыжки и
+                        развороты на фиксированной стопе (например, футбол, баскетбол)</label><br>
+                    <input type="radio" id="btnradio2" name="question01" value="3">
+                    <label for="btnradio2">Высокий уровень активности (такой как тяжёлый физический труд, горные
+                        лыжи, теннис)</label><br>
+                    <input type="radio" id="btnradio3" name="question01" value="2">
+                    <label for="btnradio3">Средний уровень активности (такой как нетяжёлый физический труд, бег
+                        трусцой)</label><br>
+                    <input type="radio" id="btnradio4" name="question01" value="1">
+                    <label for="btnradio4">Лёгкий уровень активности (такой как ходьба, работа по дому или в
+                        саду).</label><br>
+                    <input type="radio" id="btnradio5" name="question01" value="0">
+                    <label for="btnradio5">Невозможность осуществлять любые из вышеперечисленных видов активности
+                        из-за боли в колене</label><br>
+                </div>
+                <h4>2. Как часто за последние 4 недели (или с момента травмы) Вас беспокоила боль в коленном
+                    суставе?</h4>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio6" name="question02" value="10">
+                    <label for="btnradio6">Никогда 0 </label>
+                    <input type="radio" id="btnradio7" name="question02" value="9">
+                    <label for="btnradio7">1</label>
+                    <input type="radio" id="btnradio8" name="question02" value="8">
+                    <label for="btnradio8">2</label>
+                    <input type="radio" id="btnradio9" name="question02" value="7">
+                    <label for="btnradio9">3</label>
+                    <input type="radio" id="btnradio10" name="question02" value="6">
+                    <label for="btnradio10">4</label>
+                    <input type="radio" id="btnradio11" name="question02" value="5">
+                    <label for="btnradio11">5</label>
+                    <input type="radio" id="btnradio12" name="question02" value="4">
+                    <label for="btnradio12">6</label>
+                    <input type="radio" id="btnradio13" name="question02" value="3">
+                    <label for="btnradio13">7</label>
+                    <input type="radio" id="btnradio14" name="question02" value="2">
+                    <label for="btnradio14">8</label>
+                    <input type="radio" id="btnradio15" name="question02" value="1">
+                    <label for="btnradio15">9</label>
+                    <input type="radio" id="btnradio16" name="question02" value="0">
+                    <label for="btnradio16">10 Постоянно</label>
+                </div>
+                <br>
+                <h4>3. Если боль беспокоила Вас, насколько сильной она была?</h4>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio17" name="question03" value="10">
+                    <label for="btnradio17">Нет боли 0 </label>
+                    <input type="radio" id="btnradio18" name="question03" value="9">
+                    <label for="btnradio18">1</label>
+                    <input type="radio" id="btnradio19" name="question03" value="8">
+                    <label for="btnradio19">2</label>
+                    <input type="radio" id="btnradio20" name="question03" value="7">
+                    <label for="btnradio20">3</label>
+                    <input type="radio" id="btnradio21" name="question03" value="6">
+                    <label for="btnradio21">4</label>
+                    <input type="radio" id="btnradio22" name="question03" value="5">
+                    <label for="btnradio22">5</label>
+                    <input type="radio" id="btnradio23" name="question03" value="4">
+                    <label for="btnradio23">6</label>
+                    <input type="radio" id="btnradio24" name="question03" value="3">
+                    <label for="btnradio24">7</label>
+                    <input type="radio" id="btnradio25" name="question03" value="2">
+                    <label for="btnradio25">8</label>
+                    <input type="radio" id="btnradio26" name="question03" value="1">
+                    <label for="btnradio26">9</label>
+                    <input type="radio" id="btnradio27" name="question03" value="0">
+                    <label for="btnradio27">10 Невыносимая боль</label>
+                </div>
+                <br>
+                <h4>4. Насколько была выражена отёчность или тугоподвижность в коленном суставе
+                    в течение последних 4 недель (или с момента травмы)?</h4>
+                <br>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio28" name="question04" value="4">
+                    <label for="btnradio28">Совсем нет</label>
+                    <input type="radio" id="btnradio29" name="question04" value="3">
+                    <label for="btnradio29">Незначительно</label>
+                    <input type="radio" id="btnradio30" name="question04" value="2">
+                    <label for="btnradio30">Умеренно </label>
+                    <input type="radio" id="btnradio31" name="question04" value="1">
+                    <label for="btnradio31">Значительно</label>
+                    <input type="radio" id="btnradio32" name="question04" value="0">
+                    <label for="btnradio32">Очень сильно</label>
+                </div>
+                <br>
+                <h4>5. Каков максимальный уровень нагрузок, который Вы можете выполнять без
+                    заметной отёчности коленного сустава:</h4>
+                <br>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio33" name="question05" value="4">
+                    <label for="btnradio33">4. Очень высокий уровень спортивной активности,
+                        включающий прыжки и развороты на фиксированной стопе (например, футбол,
+                        баскетбол).</label><br>
+                    <input type="radio" id="btnradio34" name="question05" value="3">
+                    <label for="btnradio34">3. Высокий уровень активности (такой как тяжёлый
+                        физический труд, горные лыжи, теннис).</label><br>
+                    <input type="radio" id="btnradio35" name="question05" value="2">
+                    <label for="btnradio35">2. Средний уровень активности (такой как нетяжёлый физический труд, бег
+                        трусцой)</label>
+                    <input type="radio" id="btnradio36" name="question05" value="1">
+                    <label for="btnradio36">1. Лёгкий уровень активности (такой как ходьба, работа по
+                        дому или в саду)</label><br>
+                    <input type="radio" id="btnradio37" name="question05" value="0">
+                    <label for="btnradio37">0. Невозможность осуществлять любые из вышеперечисленных
+                        видов активности из-за отёка коленного сустава.</label>
+                </div>
+                <br>
+                <h4>6. Отмечали ли Вы щелчки или блокады в коленном суставе в течение последних 4
+                    недель (или с момента травмы)?</h4>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio38" name="question06" value="0">
+                    <label for="btnradio38">Да </label>
+                    <input type="radio" id="btnradio39" name="question06" value="1">
+                    <label for="btnradio39">Нет</label>
+                    <br>
+                </div>
+                <h4>7. Каков максимальный уровень нагрузок, который Вы можете выполнять без
+                    заметного ощущения неустойчивости в коленном суставе:</h4>
+                <br>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio40" name="question07" value="4">
+                    <label for="btnradio40">4. Очень высокий уровень спортивной активности,
+                        включающий прыжки и развороты на фиксированной стопе (например, футбол,
+                        баскетбол).</label><br>
+                    <input type="radio" id="btnradio41" name="question07" value="3">
+                    <label for="btnradio41">3. Высокий уровень активности (такой как тяжёлый физический труд, горные
+                        лыжи, теннис).</label><br>
+                    <input type="radio" id="btnradio42" name="question07" value="2">
+                    <label for="btnradio42">2. Средний уровень активности (такой как нетяжёлый
+                        физический труд, бег трусцой). </label><br>
+                    <input type="radio" id="btnradio43" name="question07" value="1">
+                    <label for="btnradio43">1. Лёгкий уровень активности (такой как ходьба, работа по
+                        дому или в саду).</label><br>
+                    <input type="radio" id="btnradio44" name="question07" value="0">
+                    <label for="btnradio44">0. Невозможность осуществлять любые из вышеперечисленных
+                        видов активности из-за неустойчивости в коленном суставе.</label>
+                </div>
+                <br>
+                <h2>СПОРТИВНАЯ АКТИВНОСТЬ</h2>
+                <h4>8. Отметьте, пожалуйста, максимальный уровень нагрузок, который Вы можете
+                    выполнять
+                    регулярно:
+                </h4>
+                <br>
+                <div class="btn-group">
+                    <input type="radio" id="btnradio45" name="question08" value="4">
+                    <label for="btnradio45">4. Очень высокий уровень спортивной активности,
+                        включающий прыжки и развороты на фиксированной стопе (например, футбол,
+                        баскетбол).</label><br>
+                    <input type="radio" id="btnradio46" name="question08" value="3">
+                    <label for="btnradio46">3. Высокий уровень активности (такой как тяжёлый
+                        физический труд, горные лыжи, теннис).</label><br>
+                    <input type="radio" id="btnradio47" name="question08" value="2">
+                    <label for="btnradio47">2. Средний уровень активности (такой как нетяжёлый
+                        физический труд, бег трусцой). </label><br>
+                    <input type="radio" id="btnradio48" name="question08" value="1">
+                    <label for="btnradio48">1. Лёгкий уровень активности ( такой как ходьба, работа по
+                        дому или в саду ) . </label><br>
+                    <input type="radio" id="btnradio49" name="question08" value="0">
+                    <label for="btnradio49">0. Невозможность осуществлять любые из вышеперечисленных
+                        видов активности из-за проблем с коленным суставом.</label>
+                    <br>
+                </div>
+                <div>
+                    <h4>9. Насколько состояние Вашего коленного сустава влияет на следующие виды
+                        активности?</h4>
+                    <div class="horizontal-scroll-wrapper squares">
+                        <table class="exercise-table">
+                            <thead>
+                                <tr>
+                                    <th> </th>
+                                    <th></th>
+                                    <th>Без
+                                        ограничений</th>
+                                    <th>Незначительные
+                                        ограничения</th>
+                                    <th>Умеренные
+                                        ограничения</th>
+                                    <th>Выраженные
+                                        ограничения
+                                    </th>
+                                    <th>Невозможно</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>а.</td>
+                                    <td>Подъём вверх по лестнице.</td>
+
+                                    <td><input type="radio" id="btnradio50" name="question09" value="4"><label
+                                            for="btnradio50">4</label></td>
+                                    <td><input type="radio" id="btnradio51" name="question09" value="3"><label
+                                            for="btnradio51">3</label></td>
+                                    <td><input type="radio" id="btnradio52" name="question09" value="2"><label
+                                            for="btnradio52">2</label></td>
+                                    <td><input type="radio" id="btnradio53" name="question09" value="1"><label
+                                            for="btnradio53">1</label></td>
+                                    <td><input type="radio" id="btnradio54" name="question09" value="0"><label
+                                            for="btnradio54">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>б.</td>
+                                    <td>Спуск по лестнице.</td>
+                                    <td><input type="radio" id="btnradio55" name="question10" value="4"><label
+                                            for="btnradio55">4</label></td>
+                                    <td><input type="radio" id="btnradio56" name="question10" value="3"><label
+                                            for="btnradio56">3</label></td>
+                                    <td><input type="radio" id="btnradio57" name="question10" value="2"><label
+                                            for="btnradio57">2</label></td>
+                                    <td><input type="radio" id="btnradio58" name="question10" value="1"><label
+                                            for="btnradio58">1</label></td>
+                                    <td><input type="radio" id="btnradio59" name="question10" value="0"><label
+                                            for="btnradio59">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>в.</td>
+                                    <td>Опереться на переднюю
+                                        поверхность коленного
+                                        сустава (встать на колено)</td>
+                                    <td><input type="radio" id="btnradio60" name="question11" value="4"><label
+                                            for="btnradio60">4</label></td>
+                                    <td><input type="radio" id="btnradio61" name="question11" value="3"><label
+                                            for="btnradio61">3</label></td>
+                                    <td><input type="radio" id="btnradio62" name="question11" value="2"><label
+                                            for="btnradio62">2</label></td>
+                                    <td><input type="radio" id="btnradio63" name="question11" value="1"><label
+                                            for="btnradio63">1</label></td>
+                                    <td><input type="radio" id="btnradio64" name="question11" value="0"><label
+                                            for="btnradio64">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>г.</td>
+                                    <td>Приседание</td>
+                                    <td><input type="radio" id="btnradio65" name="question12" value="4"><label
+                                            for="btnradio65">4</label></td>
+                                    <td><input type="radio" id="btnradio66" name="question12" value="3"><label
+                                            for="btnradio66">3</label></td>
+                                    <td><input type="radio" id="btnradio67" name="question12" value="2"><label
+                                            for="btnradio67">2</label></td>
+                                    <td><input type="radio" id="btnradio68" name="question12" value="1"><label
+                                            for="btnradio68">1</label></td>
+                                    <td><input type="radio" id="btnradio69" name="question12" value="0"><label
+                                            for="btnradio69">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>д.</td>
+                                    <td>Сидение с согнутыми
+                                        коленями</td>
+                                    <td><input type="radio" id="btnradio70" name="question13" value="4"><label
+                                            for="btnradio70">4</label></td>
+                                    <td><input type="radio" id="btnradio71" name="question13" value="3"><label
+                                            for="btnradio71">3</label></td>
+                                    <td><input type="radio" id="btnradio72" name="question13" value="2"><label
+                                            for="btnradio72">2</label></td>
+                                    <td><input type="radio" id="btnradio73" name="question13" value="1"><label
+                                            for="btnradio73">1</label></td>
+                                    <td><input type="radio" id="btnradio74" name="question13" value="0"><label
+                                            for="btnradio74">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>е.</td>
+                                    <td>Вставание со стула</td>
+                                    <td><input type="radio" id="btnradio75" name="question14" value="4"><label
+                                            for="btnradio75">4</label></td>
+                                    <td><input type="radio" id="btnradio76" name="question14" value="3"><label
+                                            for="btnradio76">3</label></td>
+                                    <td><input type="radio" id="btnradio77" name="question14" value="2"><label
+                                            for="btnradio77">2</label></td>
+                                    <td><input type="radio" id="btnradio78" name="question14" value="1"><label
+                                            for="btnradio78">1</label></td>
+                                    <td><input type="radio" id="btnradio79" name="question14" value="0"><label
+                                            for="btnradio79">0</label></td>
+                                </tr>
+                                <tr>
+                                    <td>ж.</td>
+                                    <td>Бег по прямой </td>
+                                    <td><input type="radio" id="btnradio80" name="question15" value="4"><label
+                                            for="btnradio80">4</label></td>
+                                    <td><input type="radio" id="btnradio81" name="question15" value="3"><label
+                                            for="btnradio81">3</label></td>
+                                    <td><input type="radio" id="btnradio82" name="question15" value="2"><label
+                                            for="btnradio82">2</label></td>
+                                    <td><input type="radio" id="btnradio83" name="question15" value="1"><label
+                                            for="btnradio83">1</label></td>
+                                    <td><input type="radio" id="btnradio84" name="question15" value="0"><label
+                                            for="btnradio84">0</label></td>
+                                <tr>
+                                    <td>з.</td>
+                                    <td>Прыжки и приземления на
+                                        повреждённую ногу</td>
+                                    <td><input type="radio" id="btnradio85" name="question16" value="4"><label
+                                            for="btnradio85">4</label></td>
+                                    <td><input type="radio" id="btnradio86" name="question16" value="3"><label
+                                            for="btnradio86">3</label></td>
+                                    <td><input type="radio" id="btnradio87" name="question16" value="2"><label
+                                            for="btnradio87">2</label></td>
+                                    <td><input type="radio" id="btnradio88" name="question16" value="1"><label
+                                            for="btnradio88">1</label></td>
+                                    <td><input type="radio" id="btnradio89" name="question16" value="0"><label
+                                            for="btnradio89">0</label></td>
+
+                                </tr>
+                                <tr>
+                                    <td>и.</td>
+                                    <td>Резкое начало движения и
+                                        остановка при ходьбе</td>
+                                    <td><input type="radio" id="btnradio90" name="question17" value="4"><label
+                                            for="btnradio90">4</label></td>
+                                    <td><input type="radio" id="btnradio91" name="question17" value="3"><label
+                                            for="btnradio91">3</label></td>
+                                    <td><input type="radio" id="btnradio92" name="question17" value="2"><label
+                                            for="btnradio92">2</label></td>
+                                    <td><input type="radio" id="btnradio93" name="question17" value="1"><label
+                                            for="btnradio93">1</label></td>
+                                    <td><input type="radio" id="btnradio94" name="question17" value="0"><label
+                                            for="btnradio94">0</label></td>
+                                </tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <h2>ФУНКЦИЯ</h2>
+                    <h4>10. Как бы Вы оценили функцию Вашего коленного сустава по шкале от 0 до
+                        10 (10 –
+                        норма,
+                        отличная функция,
+                        0 – невозможность выполнять любую спортивную нагрузку)?</h4>
+                    <h4>ДО ТРАВМЫ КОЛЕННОГО СУСТАВА</h4>
+                    <div class="btn-group">
+                        <input type="radio" id="btnradio95" name="question18" value="0">
+                        <label for="btnradio95">Активность невозможна 0</label>
+                        <input type="radio" id="btnradio96" name="question18" value="1">
+                        <label for="btnradio96">1</label>
+                        <input type="radio" id="btnradio97" name="question18" value="2">
+                        <label for="btnradio97">2</label>
+                        <input type="radio" id="btnradio98" name="question18" value="3">
+                        <label for="btnradio98">3</label>
+                        <input type="radio" id="btnradio99" name="question18" value="4">
+                        <label for="btnradio99">4</label>
+                        <input type="radio" id="btnradio100" name="question18" value="5">
+                        <label for="btnradio100">5</label>
+                        <input type="radio" id="btnradio101" name="question18" value="6">
+                        <label for="btnradio101">6</label>
+                        <input type="radio" id="btnradio102" name="question18" value="7">
+                        <label for="btnradio102">7</label>
+                        <input type="radio" id="btnradio103" name="question18" value="8">
+                        <label for="btnradio103">8</label>
+                        <input type="radio" id="btnradio104" name="question18" value="9">
+                        <label for="btnradio104">9</label>
+                        <input type="radio" id="btnradio105" name="question18" value="10">
+                        <label for="btnradio105">10 Без ограничений</label>
+                    </div>
+                    <br>
+                    <h4>НА СЕГОДНЯШНИЙ ДЕНЬ</h4>
+                    <div class="btn-group">
+                        <input type="radio" id="btnradio106" name="question19" value="0">
+                        <label for="btnradio106">Активность невозможна 0 </label>
+                        <input type="radio" id="btnradio107" name="question19" value="1">
+                        <label for="btnradio107">1</label>
+                        <input type="radio" id="btnradio108" name="question19" value="2">
+                        <label for="btnradio108">2</label>
+                        <input type="radio" id="btnradio109" name="question19" value="3">
+                        <label for="btnradio109">3</label>
+                        <input type="radio" id="btnradio110" name="question19" value="4">
+                        <label for="btnradio110">4</label>
+                        <input type="radio" id="btnradio111" name="question19" value="5">
+                        <label for="btnradio111">5</label>
+                        <input type="radio" id="btnradio112" name="question19" value="6">
+                        <label for="btnradio112">6</label>
+                        <input type="radio" id="btnradio113" name="question19" value="7">
+                        <label for="btnradio113">7</label>
+                        <input type="radio" id="btnradio114" name="question19" value="8">
+                        <label for="btnradio114">8</label>
+                        <input type="radio" id="btnradio115" name="question19" value="9">
+                        <label for="btnradio115">9</label>
+                        <input type="radio" id="btnradio116" name="question19" value="10">
+                        <label for="btnradio116">10 Без ограничений</label>
+                    </div>
+                    <br>
+                </div>
+                <div id="button-centr">
+                    <button id="calculate-button" type="submit"
+                        onclick="result_ases(event);displaySelection(event);calculateScore(event);">Результат</button>
+                </div>
+                <div id="result">
+                    <h4>Результат</h4>
+
+                    <br>
+                    <span id="fullNameDisplay"></span>
+                    <br>
+                    <span id="dateDisplay"></span>
+                    <br>
+
+                    <span id="date_in_Display"></span>
+                    <br>
+
+                    <span id="date_damage_ikdc_Display"></span>
+                    <br>
+
+
+                    <span id="output"></span>
+                    <div></div>
+                    <p>IKDC Score: <span id="faam-score">%</span>
+                    </p>
+                </div>
+            </form>
+        </div>
+
+        <script>
+
+            function calculateScore(event) {
+                event.preventDefault();
+                const form = document.getElementById("myForm_ikdc_name");
+                const formData = new FormData(form);
+                let faam = 0;
+
+
+                for (let [name, value] of formData.entries()) {
+                    const questionNumber = parseInt(name.slice(-2));
+                    const answerScore = parseInt(value);
+
+                    if (questionNumber >= 1 && questionNumber <= 19) {
+                        faam += answerScore;
+                    }
+
+
+                }
+
+                const faam_p = Math.round((faam / 97) * 100);
+
+
+
+
+                document.getElementById("faam-score").textContent = faam_p;
+
+            }
+
+            const calculateButton = document.getElementById("calculate-button");
+            calculateButton.addEventListener("click", calculateScore);
+        </script>
+
+
+
+
+
+
+
+
+        <script>
+            function result_ases(event) {
+
+                event.preventDefault(); // Предотвращает обновление страницы при отправке формы
+                // ваш код
+                // Получение значения ФИО пациента
+                var fullName = document.getElementById("fullName").value;
+                var fullNames = document.getElementById("fullName_sur").value;
+                var fullNamesd = document.getElementById("fullName_pat").value
+                // Получение значения дата зполнения
+                var date_ikdc = document.getElementById("date_ikdc").value;
+                var date_in_ikdc = document.getElementById("date_in_ikdc").value;
+                var date_damage_ikdc = document.getElementById("date_damage_ikdc").value;
+
+
+
+                // Отображение ФИО пациента в окне
+                var fullNameDisplay = document.getElementById("fullNameDisplay");
+                fullNameDisplay.innerHTML = "ФИО пациента: " + fullName + " " + fullNames + " " + fullNamesd;
+                // Отображение даты заполнения в окне
+                var dateDisplay = document.getElementById("dateDisplay");
+                dateDisplay.innerHTML = "Дата рождения: " + date_ikdc;
+
+                var date_in_Display = document.getElementById("date_in_Display");
+                date_in_Display.innerHTML = "Дата заполнения: " + date_in_ikdc;
+
+                var date_damage_ikdcDisplay = document.getElementById("date_damage_ikdc_Display");
+                date_damage_ikdc_Display.innerHTML = "Дата травмы: " + date_damage_ikdc;
+                // Отображение даты заполнения usual Work в окне
+
+            }
+        </script>
+
+
+
+
+        <script>
+            // function displaySelection() {
+            //     const radioButtons = document.getElementsByName('choice');
+            //     let selectedValue;
+
+            //     for (const radioButton of radioButtons) {
+            //         if (radioButton.checked) {
+            //             selectedValue = radioButton.value;
+            //             break;
+            //         }
+            //     }
+
+            //     const outputDiv = document.getElementById('output');
+            //     outputDiv.innerHTML = "Коленный сустав" + selectedValue;
+            // }
+            function displaySelection() {
+                const radioButtons = document.getElementsByName('choice');
+                let selectedValue;
+
+                for (const radioButton of radioButtons) {
+                    if (radioButton.checked) {
+                        selectedValue = radioButton.value;
+                        break;
+                    }
+                }
+
+                const outputDiv = document.getElementById('output');
+                if (selectedValue) {
+                    outputDiv.innerHTML = "Коленный сустав: " + selectedValue;
+                } else {
+                    outputDiv.innerHTML = "Коленный сустав:";
+                }
+            }
+
+
+        </script>
+
+        <script>
+            var tableContainer = document.querySelector('.table-container');
+
+            tableContainer.addEventListener('scroll', function () {
+                var scrollLeft = tableContainer.scrollLeft;
+                tableContainer.querySelector('thead').style.transform = 'translateX(' + -scrollLeft + 'px)';
+                tableContainer.querySelector('tbody').style.transform = 'translateX(' + -scrollLeft + 'px)';
+            });
+
+        </script>
+    </div>
+
+
+</body>
+{% endblock %}

@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Validation and reliability of Russian version of KOOS{% endblock %}
+{% block content %}
+<div class="breadcumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 txtc  text-center ccase">
+                <div class="brpt">
+                    <h2>KOOS</h2>
+                </div>
+                <div class="breadcumb-inner">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><i class="fas fa-angle-right"></i></li>
+                        <li>koos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hisfull_about_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+            </div>
+        </div>
+    </div>
+    <style>
+        p {
+            text-align: center;
+            font-size: 18px;
+
+        }
+
+        #accordion {
+            text-align: center;
+        }
+
+        #question {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+
+
+        /* #### */
+        /* стили для контейнера группы кнопок */
+
+        .btn-group {
+            display: block;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            border: 0 none;
+            border-radius: 100px;
+            color: black;
+
+        }
+
+        /* стили для каждой кнопки */
+        .btn-group input[type="radio"] {
+            display: none;
+            /* скрываем оригинальный элемент input */
+        }
+
+        .btn-group label {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            box-sizing: border-box;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            background-color: #ffffff;
+            border: 0 none;
+            border-radius: 100px;
+            color: black;
+        }
+
+        /* стили для выбранной кнопки */
+        .btn-group input[type="radio"]:checked+label {
+            background-color: #337ab7;
+            border-color: #2e6da4;
+            color: #fff;
+        }
+
+        /* стили для первой кнопки */
+        .btn-group label:first-child {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        /* стили для последней кнопки */
+        .btn-group label:last-child {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        /* стили для всех кнопок, кроме первой и последней */
+        .btn-group label:not(:first-child):not(:last-child) {
+            border-radius: 0;
+            margin-left: -1px;
+        }
+
+        /* стили для группы кнопок с вертикальным расположением */
+        .btn-group-vertical label {
+            margin-bottom: -1px;
+        }
+
+        /* стили для группы кнопок с горизонтальным расположением */
+        .btn-group-horizontal label {
+            margin-right: -1px;
+        }
+
+        #result {
+            text-align: left;
+            margin: auto;
+            max-width: 500px;
+            /* Желаемая максимальная ширина блока */
+        }
+
+        .body {
+            color: black;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 960px;
+            /* задаем максимальную ширину контейнера */
+            margin: 0 auto;
+            /* центрируем контейнер */
+            text-align: center;
+            /* выравниваем содержимое контейнера по центру */
+        }
+
+
+
+        /* Для разрешения 375px */
+        @media (min-width: 360px) and (max-width: 767px) {
+            .container {
+                max-width: 100%;
+                padding: 0;
+                margin: 0;
+
+            }
+
+
+
+            .survey-form {
+
+                /* задаем максимальную ширину контейнера */
+                margin: 10% auto;
+                /* центрируем контейнер */
+                /* text-align: center; */
+                /* выравниваем содержимое контейнера по центру */
+                max-width: 100%;
+                /* word-wrap: break-word; */
+            }
+
+            .hisfull_about_area {
+                text-align: center;
+                padding: 10px 0px 10px;
+            }
+
+            .survey-form {
+                padding: 5px;
+            }
+
+            h1,
+            h2,
+            p {
+                font-size: 16px;
+            }
+
+            h4 {
+                font-size: 13px;
+            }
+
+            .exercise-table td label {
+                font-size: 14px;
+            }
+
+            .btn-group label {
+                font-size: 10px;
+                padding: 5px 10px;
+                text-align: left;
+            }
+
+            #result {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .btn {
+
+                font-size: 10px;
+            }
+
+            .horizontal-scroll-wrapper {
+                width: auto;
+                height: auto;
+                overflow-y: auto;
+                overflow-x: auto;
+
+            }
+
+            .horizontal-scroll-wrapper>div {
+                width: 100px;
+                height: 100px;
+
+
+            }
+
+            .horizontal-scroll-wrapper {
+                transform: rotate(-360deg);
+                transform-origin: right top;
+
+            }
+
+            .horizontal-scroll-wrapper>div {
+                transform: rotate(90deg);
+                transform-origin: right top;
+
+            }
+
+            table {
+
+                border-collapse: collapse;
+                border-spacing: 0;
+                font-size: 12px;
+                line-height: 2;
+                margin: 0 0 20px;
+                width: 100%;
+                color: black;
+            }
+
+
+        }
+
+        /* Медиа-запрос для устройств с шириной экрана больше 1024px */
+
+
+        @media (min-width: 768px) and (max-width: 4000px) {
+            .hisfull_about_area {
+                text-align: center;
+                padding: 18px 0px 10px;
+            }
+
+            .survey-form {
+                max-width: 960px;
+                /* задаем максимальную ширину контейнера */
+                margin: 0 auto;
+                /* центрируем контейнер */
+                text-align: center;
+                /* выравниваем содержимое контейнера по центру */
+            }
+
+
+
+
+
+            .horizontal-scroll-wrapper {
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                overflow-x: auto;
+
+            }
+
+            .horizontal-scroll-wrapper>div {
+                width: 100px;
+                height: 100px;
+
+
+            }
+
+            .horizontal-scroll-wrapper {
+                transform: rotate(-360deg);
+                transform-origin: right top;
+
+            }
+
+            .horizontal-scroll-wrapper>div {
+                transform: rotate(90deg);
+                transform-origin: right top;
+
+            }
+
+            table {
+
+                border-collapse: collapse;
+                border-spacing: 0;
+                font-size: 12px;
+                line-height: 2;
+                margin: 0 0 20px;
+                width: 100%;
+                color: black;
+            }
+
+            .exercise-table th,
+            .exercise-table td {
+                padding-top: 10px;
+                padding-right: 8px;
+                padding-bottom: 8px;
+                padding-left: 8px;
+            }
+
+            #date_ikdc_br {
+                display: none;
+            }
+
+            #date_br {
+                display: none;
+            }
+        }
+    </style>
+
+    <!-- ################ -->
+
+    <div class="survey-form">
+        <h1>KOOS – Функциональное состояние коленного сустава</h1>
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="false" aria-controls="collapseOne">
+                            Инструкция
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Первоначально опубликованный в 2005 году в журнале Foot and Ankle International , Измеритель
+                        способностей стопы и голеностопного сустава (FAAM) был разработан для оценки физической
+                        функции людей с нарушениями опорно-двигательного аппарата голени, стопы и голеностопного
+                        сустава.
+                        The FAAM is a patient-completed instrument that consists of an “Activities of Daily Living”
+                        subscale (21 scored items) and a “Sports” subscale (7 scored items) in which the response
+                        options are presented as 5-point Likert scales (range 4 to 0). Scores for each subscale
+                        range from 0% (least function) to 100% (most function).
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            Вспомогательная литература
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Оригинальная литература:
+                        Мартин, Роброй Л. и др. «Доказательства достоверности измерения способности стопы и
+                        голеностопного сустава (FAAM)». Foot [&] Ankle International 26.11 (2005): 968-983.
+                        Дополнительная литература:
+                        Мартин, Роброй Л. и Джеймс Дж. Ирганг. «Обзор инструментов для самооценки результатов для
+                        стопы и лодыжки». Журнал ортопедической и спортивной физиотерапии 37.2 (2007): 72-84.
+                        Косби, Николь Л. и Джей Хертел. «Клиническая оценка результатов травм голеностопного
+                        сустава: сценарий с использованием измерения способности стопы и голеностопного сустава».
+                        Журнал спортивной реабилитации 20.1 (2011): 89-99.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="false" aria-controls="collapseThree">
+                            О разработчике партитуры
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Доктор Джесси Ван Сверинген является адъюнкт-профессором кафедры физиотерапии Школы
+                        здравоохранения и реабилитации Университета Питтсбурга и возглавляет исследовательский
+                        комитет Академии гериатрии Американской ассоциации физиотерапии.
+                        Чтобы просмотреть его публикации, посетите PubMed .
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <form id="myForm_koos">
+            <p>Симптомы</p>
+            <p>
+                При ответе на эти вопросы обобщите Ваши ощущения, полученные в течение прошедшей недели.</p>
+            <h2>S1: Отечно ли Ваше колено?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question01" id="btnradio1" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio1">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question01" id="btnradio2" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio2">Изредка</label>
+
+                <input type="radio" class="btn-check" name="question01" id="btnradio3" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio3">Иногда</label>
+
+                <input type="radio" class="btn-check" name="question01" id="btnradio4" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio4">Часто</label>
+
+                <input type="radio" class="btn-check" name="question01" id="btnradio5" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio5">Всегда</label>
+            </div>
+            <br>
+            <h2>S2. Ощущаете ли Вы хруст, слышите ли щелчки или другие звуки при движениях в коленном суставе?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question02" id="btnradio6" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio6"> Никогда</label>
+
+                <input type="radio" class="btn-check" name="question02" id="btnradio7" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio7">Изредка</label>
+
+                <input type="radio" class="btn-check" name="question02" id="btnradio8" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio8">Иногда</label>
+
+                <input type="radio" class="btn-check" name="question02" id="btnradio9" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio9">Часто</label>
+
+                <input type="radio" class="btn-check" name="question02" id="btnradio10" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio10">Всегда</label>
+            </div>
+            <br>
+            <h2>S3. Бывают ли у Вас блокады коленного сустава в положении сгибания или разгибаний?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question03" id="btnradio11" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio11">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question03" id="btnradio12" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio12">Изредка</label>
+
+                <input type="radio" class="btn-check" name="question03" id="btnradio13" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio13">Иногда</label>
+
+                <input type="radio" class="btn-check" name="question03" id="btnradio14" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio14">Часто</label>
+
+                <input type="radio" class="btn-check" name="question03" id="btnradio15" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio15">Всегда</label>
+            </div>
+            <br>
+            <h2>S4. Полностью ли Вы выпрямляете (разгибаете) колено?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question04" id="btnradio16" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio16">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question04" id="btnradio17" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio17">Изредка</label>
+
+                <input type="radio" class="btn-check" name="question04" id="btnradio18" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio18">Иногда</label>
+
+                <input type="radio" class="btn-check" name="question04" id="btnradio19" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio19">Часто</label>
+
+                <input type="radio" class="btn-check" name="question04" id="btnradio20" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio20">Всегда</label>
+            </div>
+            <br>
+            <h2>S5. Полностью ли Вы сгибаете колено?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question05" id="btnradio21" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio21">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question05" id="btnradio22" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio22">Изредка</label>
+
+                <input type="radio" class="btn-check" name="question05" id="btnradio23" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio23">Иногда</label>
+
+                <input type="radio" class="btn-check" name="question05" id="btnradio24" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio24">Часто</label>
+
+                <input type="radio" class="btn-check" name="question05" id="btnradio25" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio25">Всегда</label>
+            </div>
+            <br>
+            <p>Тугоподвижность</p>
+            <p>
+                Следующие вопросы касаются оценки тугоподвижности в коленном суставе, которую Вы испытывали в течение
+                последней недели. Тугоподвижность – это ощущение ограничения объема или замедления движений при
+                использовании коленного сустава.</p>
+            <h2>S6. Насколько выражена утренняя скованность коленного сустава?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question06" id="btnradio26" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio26">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question06" id="btnradio27" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio27">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question06" id="btnradio28" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio28">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question06" id="btnradio29" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio29">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question06" id="btnradio30" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio30">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>S7. Как Вы оцениваете выраженность тугоподвижности коленного сустава после сидения, лежания или
+                кратковременного отдыха в вечерние часы?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question07" id="btnradio31" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio31">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question07" id="btnradio32" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio32">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question07" id="btnradio33" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio33">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question07" id="btnradio34" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio34">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question07" id="btnradio35" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio35">Чрезвычайная</label>
+            </div>
+            <br>
+            <p>Боль</p>
+            <br>
+            <h2>P1. Как часто вы испытываете боль в коленном суставе?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question08" id="btnradio36" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio36">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question08" id="btnradio37" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio37">Ежемесячно</label>
+
+                <input type="radio" class="btn-check" name="question08" id="btnradio38" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio38">Еженедельно</label>
+
+                <input type="radio" class="btn-check" name="question08" id="btnradio39" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio39">Ежедневно</label>
+
+                <input type="radio" class="btn-check" name="question08" id="btnradio40" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio40">Постоянно</label>
+            </div>
+            <br>
+            <p>Насколько сильной была боль в коленном суставе в течение прошедшей недели при выполнении следующих
+                движений?</p>
+            <h2>P2. Вращение/скручивание</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question09" id="btnradio41" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio41">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question09" id="btnradio42" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio42">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question09" id="btnradio43" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio43">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question09" id="btnradio44" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio44">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question09" id="btnradio45" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio45">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P3. Полное разгибание</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question10" id="btnradio46" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio46">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question10" id="btnradio47" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio47">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question10" id="btnradio48" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio48">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question10" id="btnradio49" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio49">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question10" id="btnradio50" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio50">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P4. Полное сгибание</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question11" id="btnradio51" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio51">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question11" id="btnradio52" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio52">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question11" id="btnradio53" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio53">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question11" id="btnradio54" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio54">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question11" id="btnradio55" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio55">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P5. Ходьба по ровной поверхности</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question12" id="btnradio56" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio56">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question12" id="btnradio57" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio57">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question12" id="btnradio58" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio58">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question12" id="btnradio59" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio59">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question12" id="btnradio60" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio60">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P6. Ходьба по лестнице (подъем и спуск)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question13" id="btnradio61" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio61">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question13" id="btnradio62" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio62">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question13" id="btnradio63" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio63">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question13" id="btnradio64" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio64">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question13" id="btnradio65" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio65">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P7. Ночью в кровати</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question14" id="btnradio66" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio66">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question14" id="btnradio67" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio67">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question14" id="btnradio68" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio68">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question14" id="btnradio69" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio69">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question14" id="btnradio70" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio70">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P8. Сидение или лежание</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question15" id="btnradio71" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio71">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question15" id="btnradio72" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio72">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question15" id="btnradio73" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio73">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question15" id="btnradio74" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio74">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question15" id="btnradio75" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio75">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>P9. Стояние на месте на выпрямленных ногах</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question16" id="btnradio76" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio76">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question16" id="btnradio77" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio77">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question16" id="btnradio78" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio78">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question16" id="btnradio79" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio79">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question16" id="btnradio80" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio80">Чрезвычайная</label>
+            </div>
+            <br>
+            <p>Сложность выполнения ежедневных бытовых действий.
+                Следующие вопросы касаются Вашей физической активности. Мы имеем в виду Вашу способность к передвижению
+                и самообслуживанию. Для каждого из приведенных вопросов отметьте степень выра-женности затруднений,
+                которые Вы испытывали в течение прошедшей недели в связи с заболева-нием коленного сустава.</p>
+            <br>
+            <h2>A1. Спуск по лестнице</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question17" id="btnradio81" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio81">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question17" id="btnradio82" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio82">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question17" id="btnradio83" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio83">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question17" id="btnradio84" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio84">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question17" id="btnradio85" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio85">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A2. Подъем по лестнице</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question18" id="btnradio86" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio86">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question18" id="btnradio87" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio87">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question18" id="btnradio88" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio88">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question18" id="btnradio89" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio89">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question18" id="btnradio90" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio90">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A3. Вставание после сидения</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question19" id="btnradio91" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio91">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question19" id="btnradio92" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio92">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question19" id="btnradio93" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio93">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question19" id="btnradio94" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio94">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question19" id="btnradio95" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio95">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A4. Стояние</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question20" id="btnradio96" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio96">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question20" id="btnradio97" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio97">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question20" id="btnradio98" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio98">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question20" id="btnradio99" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio99">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question20" id="btnradio100" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio100">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A5. Наклон к полу, поднимание предметов с пол</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question21" id="btnradio101" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio101">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question21" id="btnradio102" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio102">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question21" id="btnradio103" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio103">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question21" id="btnradio104" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio104">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question21" id="btnradio105" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio105">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2 name="name_faam_s">Foot and Ankle Ability Measure Russian – Sport</h2>
+            <h2>A6. Ходьба по ровной поверхности</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question22" id="btnradio106" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio106">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question22" id="btnradio107" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio107">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question22" id="btnradio108" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio108">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question22" id="btnradio109" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio109">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question22" id="btnradio110" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio110">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A7. Усаживание в машину (выход из машины)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question23" id="btnradio111" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio111">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question23" id="btnradio112" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio112">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question23" id="btnradio113" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio113">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question23" id="btnradio114" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio114">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question23" id="btnradio115" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio115">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A8. Поход в магазин за покупками</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question24" id="btnradio116" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio116">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question24" id="btnradio117" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio117">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question24" id="btnradio118" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio118">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question24" id="btnradio119" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio119">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question24" id="btnradio120" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio120">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A9. Надевание носков (чулок)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question25" id="btnradio121" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio121">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question25" id="btnradio122" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio122">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question25" id="btnradio123" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio123">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question25" id="btnradio124" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio124">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question25" id="btnradio125" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio125">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A10. Вставание из кровати</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question26" id="btnradio126" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio126">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question26" id="btnradio127" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio127">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question26" id="btnradio128" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio128">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question26" id="btnradio129" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio129">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question26" id="btnradio130" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio130">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A11. Снятие носков (чулок)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question27" id="btnradio131" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio131">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question27" id="btnradio132" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio132">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question27" id="btnradio133" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio133">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question27" id="btnradio134" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio134">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question27" id="btnradio135" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio135">Чрезвычайная</label>
+            </div>
+            <br>
+            <h2>A12. Укладывание в кровать, смена положения в кровати, поиск положения для колена (коленей)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question28" id="btnradio136" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio136">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question28" id="btnradio137" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio137">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question28" id="btnradio138" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio138">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question28" id="btnradio139" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio139">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question28" id="btnradio140" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio140">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>A13. Вхождение в ванну, выход из ванны</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question29" id="btnradio141" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio141">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question29" id="btnradio142" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio142">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question29" id="btnradio143" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio143">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question29" id="btnradio144" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio144">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question29" id="btnradio145" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio145">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>A14. Сидение</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question30" id="btnradio146" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio146">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question30" id="btnradio147" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio147">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question30" id="btnradio148" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio148">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question30" id="btnradio149" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio149">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question30" id="btnradio150" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio150">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>A15. Усаживание на унитаз, вставание с унитаза</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question31" id="btnradio151" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio151">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question31" id="btnradio152" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio152">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question31" id="btnradio153" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio153">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question31" id="btnradio155" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio155">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question31" id="btnradio156" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio156">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>A16. Выполнение тяжелой домашней работы (перемещение мебели, оттирание (натирание) полов и т.п.)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question32" id="btnradio157" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio157">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question32" id="btnradio158" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio158">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question32" id="btnradio159" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio159">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question32" id="btnradio160" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio160">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question32" id="btnradio161" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio161">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>A17. Легкая домашняя работа (приготовление пищи, вытирание пыли и т.п.)</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question33" id="btnradio162" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio162">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question33" id="btnradio163" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio163">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question33" id="btnradio164" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio164">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question33" id="btnradio165" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio165">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question33" id="btnradio166" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio166">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <p>Спорт, активность на отдыхе
+                Следующие вопросы имеют отношение Вашей физической активности более высокого уровня: при занятиях
+                спортом или при участии в подвижных играх. Для каждого из приведенных вопросов отметь-те степень
+                выраженности затруднений, которые Вы испытывали в течение прошедшей недели в связи с заболеванием
+                коленного сустава.</p>
+            <br>
+            <h2>SP1. Сидение на корточках</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question34" id="btnradio167" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio167">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question34" id="btnradio168" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio168">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question34" id="btnradio169" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio169">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question34" id="btnradio170" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio170">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question34" id="btnradio171" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio171">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>SP2. Бег</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question35" id="btnradio172" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio172">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question35" id="btnradio173" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio173">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question35" id="btnradio174" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio174">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question35" id="btnradio175" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio175">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question35" id="btnradio176" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio176">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>SP3. Прыжки</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question36" id="btnradio177" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio177">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question36" id="btnradio178" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio178">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question36" id="btnradio179" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio179">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question36" id="btnradio180" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio180">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question36" id="btnradio181" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio181">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>SP4. Вращение на больной ноге</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question37" id="btnradio182" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio182">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question37" id="btnradio183" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio183">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question37" id="btnradio184" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio184">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question37" id="btnradio185" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio185">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question37" id="btnradio186" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio186">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <h2>SP5. Стояние на коленях</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question38" id="btnradio187" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio187">Отсутствует</label>
+
+                <input type="radio" class="btn-check" name="question38" id="btnradio188" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio188">Легкая</label>
+
+                <input type="radio" class="btn-check" name="question38" id="btnradio189" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio189">Умеренная</label>
+
+                <input type="radio" class="btn-check" name="question38" id="btnradio190" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio190">Сильная</label>
+
+                <input type="radio" class="btn-check" name="question38" id="btnradio191" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio191">Чрезвычайная</label>
+
+            </div>
+            <br>
+            <p>Качество жизни</p>
+            <br>
+            <h2>Q1. Как часто Вас беспокоят проблемы с коленными суставами?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question39" id="btnradio192" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio192">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question39" id="btnradio193" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio193">Ежемесячно</label>
+
+                <input type="radio" class="btn-check" name="question39" id="btnradio194" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio194">Еженедельно</label>
+
+                <input type="radio" class="btn-check" name="question39" id="btnradio195" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio195">Ежедневно</label>
+
+                <input type="radio" class="btn-check" name="question39" id="btnradio196" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio196">Постоянно</label>
+
+            </div>
+            <br>
+            <h2>Q2. Изменили ли Вы образ жизни, чтобы избегать действий, потенциально создающих проблемы с коленными
+                суставами?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question40" id="btnradio197" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio197">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question40" id="btnradio198" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio198">Ежемесячное</label>
+
+                <input type="radio" class="btn-check" name="question40" id="btnradio199" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio199">Еженедельно</label>
+
+                <input type="radio" class="btn-check" name="question40" id="btnradio200" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio200">Ежедневно</label>
+
+                <input type="radio" class="btn-check" name="question40" id="btnradio201" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio201">Постоянно</label>
+
+            </div>
+            <br>
+            <h2>Q3. Как часто Вы испытываете беспокойство по поводу проблем с коленными суставами?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question41" id="btnradio202" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio202">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question41" id="btnradio203" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio203">Ежемесячно</label>
+
+                <input type="radio" class="btn-check" name="question41" id="btnradio204" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio204">Еженедельно</label>
+
+                <input type="radio" class="btn-check" name="question41" id="btnradio205" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio205">Ежедневно</label>
+
+                <input type="radio" class="btn-check" name="question41" id="btnradio206" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio206">Постоянно</label>
+
+            </div>
+            <br>
+            <h2>Q4. В общем, насколько сложна Ваша жизнь с больными коленными суставами?</h2>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                <input type="radio" class="btn-check" name="question42" id="btnradio207" autocomplete="off" value="4">
+                <label class="btn btn-outline-primary" for="btnradio207">Никогда</label>
+
+                <input type="radio" class="btn-check" name="question42" id="btnradio208" autocomplete="off" value="3">
+                <label class="btn btn-outline-primary" for="btnradio208">Ежемесячно</label>
+
+                <input type="radio" class="btn-check" name="question42" id="btnradio209" autocomplete="off" value="2">
+                <label class="btn btn-outline-primary" for="btnradio209">Еженедельно</label>
+
+                <input type="radio" class="btn-check" name="question42" id="btnradio210" autocomplete="off" value="1">
+                <label class="btn btn-outline-primary" for="btnradio210">Ежедневно</label>
+
+                <input type="radio" class="btn-check" name="question42" id="btnradio211" autocomplete="off" value="0">
+                <label class="btn btn-outline-primary" for="btnradio211">Постоянно</label>
+
+            </div>
+            <br>
+
+        </form>
+        <br>
+        <button id="calculate-button" type="submit">Calculate Score</button>
+        <div name="result_koos">
+            <br>
+            <h2>Results</h2>
+            <p>Боль(P): <span id="norm-p"></span>%</p>
+            <p>Симптомы(S): <span id="norm-s"></span>%</p>
+            <p>Ежедневная активность(A): <span id="norm-a"></span>%</p>
+            <p>Спортивная активность(SP): <span id="norm-sp"></span>%</p>
+            <p>Качество жизни(LQ): <span id="norm-lq"></span>%</p>
+            <p>Общий нормализованный показатель: <span id="norm-sum"></span>%
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function calculateScore(event) {
+        event.preventDefault();
+        const form = document.getElementById("myForm_koos");
+        const formData = new FormData(form);
+        let normP = 0;
+        let normS = 0;
+        let normA = 0;
+        let normSP = 0;
+        let normLQ = 0;
+
+
+
+        for (let [name, value] of formData.entries()) {
+            const questionNumber = parseInt(name.slice(-2));
+            const answerScore = parseInt(value);
+
+            if (questionNumber >= 8 && questionNumber <= 16) {
+                normP += answerScore;
+            }
+
+            if (questionNumber >= 1 && questionNumber <= 7) {
+                normS += answerScore;
+            }
+
+            if (questionNumber >= 17 && questionNumber <= 33) {
+                normA += answerScore;
+            }
+            if (questionNumber >= 34 && questionNumber <= 38) {
+                normSP += answerScore;
+            }
+            if (questionNumber >= 39 && questionNumber <= 42) {
+                normLQ += answerScore;
+            }
+
+
+
+
+
+        }
+
+        const norm_p_score = Math.round(100 - (normP * 100) / 36);
+        const norm_s_score = Math.round(100 - (normS * 100) / 28);
+        const norm_a_score = Math.round(100 - (normA * 100) / 68);
+        const norm_sp_score = Math.round(100 - (normSP * 100) / 20);
+        const norm_lq_score = Math.round(100 - (normLQ * 100) / 16);
+        const normSum = Math.round(100 - ((normP + normS + normA + normSP + normLQ) * 100) / 168);
+
+        document.getElementById("norm-p").textContent = norm_p_score;
+        document.getElementById("norm-s").textContent = norm_s_score;
+        document.getElementById("norm-a").textContent = norm_a_score;
+        document.getElementById("norm-sp").textContent = norm_sp_score;
+        document.getElementById("norm-lq").textContent = norm_lq_score;
+        document.getElementById("norm-sum").textContent = normSum;
+    }
+
+    const calculateButton = document.getElementById("calculate-button");
+    calculateButton.addEventListener("click", calculateScore);
+</script>
+
+
+
+{% endblock %}

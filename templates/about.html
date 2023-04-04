@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}О нас{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<!-- breadcumb-area -->
+<div class="breadcumb-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 txtc  text-center ccase">
+				<div class="brpt">
+					<h2>О нас</h2>
+				</div>
+				<div class="breadcumb-inner">
+					<ul>
+						<li><a href="/">Главная</a></li>
+						<li><i class="fas fa-angle-right"></i></li>
+						<li>О нас</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="hisfull_about_area">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12">
+			</div>
+		</div>
+		<style>
+			h1 {
+				font-size: 28px;
+				margin-bottom: 20px;
+				text-align: center;
+			}
+
+			p {
+				margin-bottom: 15px;
+			}
+
+			article {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 20px;
+				border: 1px solid #ccc;
+				box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+				background-color: #fff;
+			}
+		</style>
+
+		<body>
+			<article>
+				<header>
+					<h1>О нашей команде и проекте.</h1>
+				</header>
+				<main>
+					<p>Мы - команда медицинских специалистов, которые объединились для продвижения науки в России.
+						Наш сайт создан для удобного и быстрого подсчета баллов оценочных систем пациентов с
+						болезнями, а также для поиска проверенных и валидированных русскоязычных оценочных систем
+						или опросников.
+
+						Основная задача нашего сайта на первом этапе - помощь врачам-исследователям в организации
+						научного процесса и оценке отдаленных результатов проведенного лечения. Также он полезен
+						другим врачам и исследователям, которые могут быстро и без траты времени на поиск и подбор
+						материалов найти оценочную систему, которая была бы корректной и валидированной.
+
+						В нашем научном обществе баллы по одним и тем же шкалам часто представляются по-разному, не
+						соответствуя канонам оригинальных разработчиков. Это затрудняет взаимодействие в научной
+						среде. На нашем сайте вы можете получить корректную и валидированную версию шкалы, а также
+						онлайн подсчитать баллы по ней с учетом правильных формул и методов подсчета. Мы становимся
+						золотым стандартом работы с оценочными системами в любом травматолого-ортопедическом
+						исследовании.
+
+						Наш сайт поможет упростить работу аспирантам, студентам, ординаторам и другим ученым, что
+						даст им возможность уделить больше времени на научные исследования. Мы гордимся нашей
+						работой и постоянно работаем над улучшением сайта для удовлетворения потребностей наших
+						пользователей.</p>
+				</main>
+			</article>
+		</body>
+		<!-- Include All JS -->
+		<!-- <script src="static/js/vendor/jquery-3.5.1.min.js"></script>
+		<script src="static/js/bootstrap.min.js"></script>
+		<script src="static/js/isotope.pkgd.min.js"></script>
+		<script src="static/js/owl.carousel.min.js"></script>
+		<script src="static/js/jquery.nivo.slider.pack.js"></script>
+		<script src="static/js/slick.min.js"></script>
+		<script src="static/js/imagesloaded.pkgd.min.js"></script>
+		<script src="static/js/venobox.min.js"></script>
+		<script src="static/js/jquery.appear.js"></script>
+		<script src="static/js/jquery.knob.js"></script>
+		<script src="static/js/BeerSlider.js"></script>
+		<script src="static/js/theme-pluginjs.js"></script>
+		<script src="static/js/jquery.meanmenu.js"></script>
+		<script src="static/js/ajax-mail.js"></script>
+		<script src="static/js/theme.js"></script> -->
+
+	</div>
+</div>
+{% endblock %}

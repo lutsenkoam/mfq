@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}Ases{% endblock %}
+{% block content %}
+
+
+
+
+
+<style>
+    p {
+        text-align: center;
+        font-size: 18px;
+
+    }
+
+    #accordion {
+        text-align: center;
+    }
+
+    #question {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+
+
+    /* #### */
+    /* стили для контейнера группы кнопок */
+
+    .btn-group {
+        display: block;
+        margin-bottom: 15px;
+        background-color: #ffffff;
+        border: 0 none;
+        border-radius: 100px;
+        color: black;
+
+    }
+
+    /* стили для каждой кнопки */
+    .btn-group input[type="radio"] {
+        display: none;
+        /* скрываем оригинальный элемент input */
+    }
+
+    .btn-group label {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        box-sizing: border-box;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 100%;
+        background-color: #ffffff;
+        border: 0 none;
+        border-radius: 100px;
+        color: black;
+    }
+
+    /* стили для выбранной кнопки */
+    .btn-group input[type="radio"]:checked+label {
+        background-color: #337ab7;
+        border-color: #2e6da4;
+        color: #fff;
+    }
+
+    /* стили для первой кнопки */
+    .btn-group label:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    /* стили для последней кнопки */
+    .btn-group label:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    /* стили для всех кнопок, кроме первой и последней */
+    .btn-group label:not(:first-child):not(:last-child) {
+        border-radius: 0;
+        margin-left: -1px;
+    }
+
+    /* стили для группы кнопок с вертикальным расположением */
+    .btn-group-vertical label {
+        margin-bottom: -1px;
+    }
+
+    /* стили для группы кнопок с горизонтальным расположением */
+    .btn-group-horizontal label {
+        margin-right: -1px;
+    }
+
+    #result {
+        text-align: left;
+        margin: auto;
+        max-width: 500px;
+        /* Желаемая максимальная ширина блока */
+    }
+
+    .body {
+        color: black;
+        font-weight: bold;
+    }
+
+    .container {
+        max-width: 960px;
+        /* задаем максимальную ширину контейнера */
+        margin: 0 auto;
+        /* центрируем контейнер */
+        text-align: center;
+        /* выравниваем содержимое контейнера по центру */
+    }
+
+
+
+    /* Для разрешения 375px */
+    @media (min-width: 360px) and (max-width: 767px) {
+        .container {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+
+        }
+
+
+
+        .survey-form {
+
+            /* задаем максимальную ширину контейнера */
+            margin: 10% auto;
+            /* центрируем контейнер */
+            /* text-align: center; */
+            /* выравниваем содержимое контейнера по центру */
+            max-width: 100%;
+            /* word-wrap: break-word; */
+        }
+
+        .hisfull_about_area {
+            text-align: center;
+            padding: 10px 0px 10px;
+        }
+
+        .survey-form {
+            padding: 5px;
+        }
+
+        h1,
+        h2,
+        p {
+            font-size: 16px;
+        }
+
+        h4 {
+            font-size: 13px;
+        }
+
+        .exercise-table td label {
+            font-size: 14px;
+        }
+
+        .btn-group label {
+            font-size: 10px;
+            padding: 5px 10px;
+            text-align: left;
+        }
+
+        #result {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .btn {
+
+            font-size: 10px;
+        }
+
+        .horizontal-scroll-wrapper {
+            width: auto;
+            height: auto;
+            overflow-y: auto;
+            overflow-x: auto;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            width: 100px;
+            height: 100px;
+
+
+        }
+
+        .horizontal-scroll-wrapper {
+            transform: rotate(-360deg);
+            transform-origin: right top;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            transform: rotate(90deg);
+            transform-origin: right top;
+
+        }
+
+        table {
+
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 12px;
+            line-height: 2;
+            margin: 0 0 20px;
+            width: 100%;
+            color: black;
+        }
+
+
+    }
+
+    /* Медиа-запрос для устройств с шириной экрана больше 1024px */
+
+
+    @media (min-width: 768px) and (max-width: 4000px) {
+        .hisfull_about_area {
+            text-align: center;
+            padding: 18px 0px 10px;
+        }
+
+        .survey-form {
+            max-width: 960px;
+            /* задаем максимальную ширину контейнера */
+            margin: 0 auto;
+            /* центрируем контейнер */
+            text-align: center;
+            /* выравниваем содержимое контейнера по центру */
+        }
+
+
+
+
+
+        .horizontal-scroll-wrapper {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: auto;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            width: 100px;
+            height: 100px;
+
+
+        }
+
+        .horizontal-scroll-wrapper {
+            transform: rotate(-360deg);
+            transform-origin: right top;
+
+        }
+
+        .horizontal-scroll-wrapper>div {
+            transform: rotate(90deg);
+            transform-origin: right top;
+
+        }
+
+        table {
+
+            border-collapse: collapse;
+            border-spacing: 0;
+            font-size: 12px;
+            line-height: 2;
+            margin: 0 0 20px;
+            width: 100%;
+            color: black;
+        }
+
+        .exercise-table th,
+        .exercise-table td {
+            padding-top: 10px;
+            padding-right: 8px;
+            padding-bottom: 8px;
+            padding-left: 8px;
+        }
+
+        #date_ikdc_br {
+            display: none;
+        }
+
+        #date_br {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+
+    <div class="breadcumb-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 txtc  text-center ccase">
+                    <div class="brpt">
+                        <h2>Ases</h2>
+                    </div>
+                    <div class="breadcumb-inner">
+                        <ul>
+                            <li><a href="/">Главная</a></li>
+                            <li><i class="fas fa-angle-right"></i></li>
+                            <li>Ases</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hisfull_about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <div class="survey-form">
+        <div class="ases_form">
+            <h1>American Shoulder and Elbow Surgeons Score (ASES)</h1>
+            <form id="myForm_ases_name">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName" placeholder="Имя" aria-label="Имя">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName_sur" placeholder="Отчество"
+                            aria-label="Отчество">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" id="fullName_pat" placeholder="Фамилия"
+                            aria-label="Фамилия">
+                    </div>
+                </div>
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date_ases" name="date"><br><br>
+                <br>
+                <br>
+                <h2>Pain Questionnaire</h2>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="usual_work" placeholder="1. Usual Work:"
+                            aria-label="usual_work:">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" id="usual_sport"
+                            placeholder="2. Usual Sport/Leisure Activity:"
+                            aria-label="2. usual_sport_leisure_activity:">
+                    </div>
+                </div>
+                <div class="form-check">
+
+                    <h2>3. Do you have shoulder pain at night?</h2>
+                    <input class="form-check-input" type="radio" name="ases_q03" id="ases_q03" value="yes">
+                    <label class="form-check-label" for="ases_q03">
+                        Да
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ases_q03" id="ases_q04" value="no">
+                    <label class="form-check-label" for="ases_q04">
+                        Нет
+                    </label>
+                </div>
+                <div class="form-check">
+                    <h2>4. Do you take pain killers such as paracetamol (acetaminophen), diclofenac, or
+                        ibuprofen?</h2>
+                    <input class="form-check-input" type="radio" name="ases_q04" id="ases_q05" value="yes">
+                    <label class="form-check-label" for="ases_q05">
+                        Да
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ases_q04" id="ases_q06" value="no">
+                    <label class="form-check-label" for="ases_q06">
+                        Нет
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <h2>5. Do you take strong pain killers such as codeine, tramadol, or morphine?</h2>
+                    <input class="form-check-input" type="radio" name="ases_q05" id="ases_q07" value="yes">
+                    <label class="form-check-label" for="ases_q07">
+                        Да
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="ases_q05" id="ases_q08" value="no">
+                    <label class="form-check-label" for="ases_q08">
+                        Нет
+                    </label>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <input id="questsix" type="text" class="form-control"
+                            placeholder="6. How many pills do you take on an average day?"
+                            aria-label="How_many_pills_do_you_take_on_an_average_day">
+                    </div>
+                </div>
+                <br>
+
+                <h2>7. Intensity of pain:</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain07"
+                        autocomplete="off" value="0">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain07"> 0</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain08"
+                        autocomplete="off" value="1">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain08">1</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain09"
+                        autocomplete="off" value="2">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain09">2</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain10"
+                        autocomplete="off" value="3">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain10">3</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain11"
+                        autocomplete="off" value="4">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain11">4</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain12"
+                        autocomplete="off" value="5">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain12">5</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain13"
+                        autocomplete="off" value="6">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain13">6</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain14"
+                        autocomplete="off" value="7">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain14">7</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain15"
+                        autocomplete="off" value="8">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain15">8</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain16"
+                        autocomplete="off" value="9">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain16">9</label>
+
+                    <input type="radio" class="btn-check" name="intensity_of_pain07" id="intensity_of_pain17"
+                        autocomplete="off" value="10">
+                    <label class="btn btn-outline-primary" for="intensity_of_pain17">10</label>
+                </div>
+
+                <br>
+                <h2>Dominant Hand:</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="dominant_handr01" id="dominant_handr01"
+                        autocomplete="off" value="R">
+                    <label class="btn btn-outline-primary" for="dominant_handr01"> R</label>
+
+                    <input type="radio" class="btn-check" name="dominant_handr01" id="dominant_handr02"
+                        autocomplete="off" value="L">
+                    <label class="btn btn-outline-primary" for="dominant_handr02">L</label>
+                    <input type="radio" class="btn-check" name="dominant_handr01" id="dominant_handr03"
+                        autocomplete="off" value="Both">
+                    <label class="btn btn-outline-primary" for="dominant_handr03">Both</label>
+                </div>
+                <br>
+                <h2>Affected Shoulder:</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="affected_shoulde01" id="affected_shoulde01"
+                        autocomplete="off" value="R">
+                    <label class="btn btn-outline-primary" for="affected_shoulde01"> R</label>
+
+                    <input type="radio" class="btn-check" name="affected_shoulde01" id="affected_shoulde02"
+                        autocomplete="off" value="L">
+                    <label class="btn btn-outline-primary" for="affected_shoulde02">L</label>
+                </div>
+
+                <br>
+                <br>
+                <h2>Опросник повседневной жизни</h2>
+                <br>
+
+                <h2>8. Вам трудно надеть пальто?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question00" id="btnradio00" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio00"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question00" id="btnradio01" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio01">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question00" id="btnradio02" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio02">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question00" id="btnradio03" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio03">Не сложно</label>
+                </div>
+                <br>
+                <h2>9. Вам трудно спать на пораженной стороне?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question01" id="btnradio04" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio04"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question01" id="btnradio05" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio05">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question01" id="btnradio06" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio06">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question01" id="btnradio07" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio07">Не сложно</label>
+                </div>
+                <br>
+                <h2>10. Вам трудно вымыть спину / застегнуть бюстгальтер</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question02" id="btnradio08" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio08"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question02" id="btnradio09" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio09">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question02" id="btnradio10" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio10">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question02" id="btnradio11" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio11">Не сложно</label>
+                </div>
+                <br>
+                <h2>11. Вам трудно справляться с уборкой?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question03" id="btnradio12" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio12"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question03" id="btnradio13" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio13">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question03" id="btnradio14" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio14">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question03" id="btnradio15" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio15">Не сложно</label>
+                </div>
+                <br>
+                <h2>12. Вам трудно расчесывать волосы?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question04" id="btnradio16" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio16"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question04" id="btnradio17" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio17">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question04" id="btnradio18" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio18">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question04" id="btnradio19" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio19">Не сложно</label>
+                </div>
+                <br>
+                <h2>13. Вам трудно дотянуться до высокой полки?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question05" id="btnradio20" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio20"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question05" id="btnradio21" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio21">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question05" id="btnradio22" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio22">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question05" id="btnradio23" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio23">Не сложно</label>
+                </div>
+                <br>
+                <h2>14. Трудно ли вам поднять 10 фунтов? (4,5 кг) выше вашего плеча?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question06" id="btnradio24" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio24"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question06" id="btnradio25" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio25">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question06" id="btnradio26" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio26">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question06" id="btnradio27" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio27">Не сложно</label>
+                </div>
+                <br>
+                <h2>15. Вам трудно бросать мяч сверху?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question07" id="btnradio28" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio28"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question07" id="btnradio29" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio29">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question07" id="btnradio30" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio30">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question07" id="btnradio31" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio31">Не сложно</label>
+                </div>
+                <br>
+                <h2>16. Вам трудно выполнять свою обычную работу?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question08" id="btnradio32" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio32"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question08" id="btnradio33" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio33">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question08" id="btnradio34" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio34">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question08" id="btnradio35" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio35">Не сложно</label>
+                </div>
+                <br>
+                <h2>17. Трудно ли вам заниматься своим обычным спортом /досугом?</h2>
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="question09" id="btnradio36" autocomplete="off"
+                        value="0">
+                    <label class="btn btn-outline-primary" for="btnradio36"> Не могу</label>
+
+                    <input type="radio" class="btn-check" name="question09" id="btnradio37" autocomplete="off"
+                        value="1">
+                    <label class="btn btn-outline-primary" for="btnradio37">Очень сложно
+                        сделать</label>
+
+                    <input type="radio" class="btn-check" name="question09" id="btnradio38" autocomplete="off"
+                        value="2">
+                    <label class="btn btn-outline-primary" for="btnradio38">Довольно сложно</label>
+
+                    <input type="radio" class="btn-check" name="question09" id="btnradio39" autocomplete="off"
+                        value="3">
+                    <label class="btn btn-outline-primary" for="btnradio39">Не сложно</label>
+                </div>
+                <br>
+            </form>
+            <button onclick="result_ases(event);result_ases_yes_no(event);result_ases_seven(event) ">Результат</button>
+
+            <!-- <button onclick="result_ases()">Результат</button> -->
+            <br>
+            <h2>Results</h2>
+
+            <br>
+            <span id="fullNameDisplay"></span>
+            <br>
+            <span id="dateDisplay"></span>
+            <br>
+            <span id="usualWork"></span>
+            <br>
+            <span id="usualSport"></span>
+            <br>
+            <span id="selectedValueDisplayThree"></span>
+            <br>
+            <span id="selectedValueDisplayFour"></span>
+            <br>
+            <span id="selectedValueDisplayFive"></span>
+            <br>
+            <span id="howMany_Pills"></span>
+            <br>
+            <span id="selectedValueDisplaySeven"></span>
+            <br>
+            <span id="selectedValueDisplayPainScore"></span>
+            <br>
+            <span id="selectedValueDominantHand"></span>
+            <br>
+            <span id="selectedValueaffectedShoulder"></span>
+            <br>
+            <span id="selectedValueDisplayEight"></span>
+            <br>
+            <span id="selectedValueDisplayEightScore"></span>
+            <br>
+            <span id="selectedValueDisplayFinal"></span>
+            <br>
+
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        function result_ases() {
+
+            event.preventDefault(); // Предотвращает обновление страницы при отправке формы
+            // ваш код
+            // Получение значения ФИО пациента
+            var fullName = document.getElementById("fullName").value;
+            var fullNames = document.getElementById("fullName_sur").value;
+            var fullNamesd = document.getElementById("fullName_pat").value
+            // Получение значения дата зполнения
+            var date_ases = document.getElementById("date_ases").value;
+            // Получение значения Pain Questionnaire
+            var usual_work = document.getElementById("usual_work").value;
+
+            var usual_sport = document.getElementById("usual_sport").value;
+            // Получение значения 3
+            var howManyPills = document.getElementById("questsix").value;
+
+
+
+
+            // Отображение ФИО пациента в окне
+            var fullNameDisplay = document.getElementById("fullNameDisplay");
+            fullNameDisplay.innerHTML = "ФИО пациента: " + fullName + " " + fullNames + " " + fullNamesd;
+            // Отображение даты заполнения в окне
+            var dateDisplay = document.getElementById("dateDisplay");
+            dateDisplay.innerHTML = "Дата заполнения: " + date_ases;
+            // Отображение даты заполнения usual Work в окне
+            var usualWork = document.getElementById("usualWork");
+            usualWork.innerHTML = "1. Обычная работа: " + usual_work;
+            var usualSport = document.getElementById("usualSport");
+            usualSport.innerHTML = "2. ОбычныйСпорт/ДосугДеятельность: " + usual_sport;
+
+            var howMany_Pills = document.getElementById("howMany_Pills");
+            howMany_Pills.innerHTML = "6. Сколько таблеток вы принимаете в среднем в день?: " + howManyPills;
+
+
+            // Получение значения выбранной радио-кнопки
+        }
+    </script>
+
+    <script>
+        function result_ases_yes_no() {
+            var radios = document.getElementsByName('ases_q03');
+            let selectedValueThree = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedValueThree = radios[i].value;
+                    break;
+                }
+            }
+
+            var radios = document.getElementsByName('ases_q04');
+            let selectedValueFour = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedValueFour = radios[i].value;
+                    break;
+                }
+            }
+
+            var radios = document.getElementsByName('ases_q05');
+            let selectedValueFive = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedValueFive = radios[i].value;
+                    break;
+                }
+            }
+
+
+
+            var radios = document.getElementsByName('dominant_handr01');
+            let dominantHand = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    dominantHand = radios[i].value;
+                    break;
+                }
+            }
+
+            // Вывод выбранного значения в соответствующий элемент на странице
+            var selectedValueDominantHand = document.getElementById("selectedValueDominantHand");
+            selectedValueDominantHand.innerHTML = "Dominant Hand: " + dominantHand;
+
+
+
+
+            var radios = document.getElementsByName('affected_shoulde01');
+            let affectedShoulder = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    affectedShoulder = radios[i].value;
+                    break;
+                }
+            }
+
+            // Вывод выбранного значения в соответствующий элемент на странице
+            var selectedValueaffectedShoulder = document.getElementById("selectedValueaffectedShoulder");
+            selectedValueaffectedShoulder.innerHTML = "Dominant Hand: " + affectedShoulder;
+
+
+
+
+
+            // Вывод выбранного значения в соответствующий элемент на странице
+            var selectedValueDisplayThree = document.getElementById("selectedValueDisplayThree");
+            selectedValueDisplayThree.innerHTML = "3. Испытываете ли вы боль в плече по ночам (первый круг)?: " + selectedValueThree;
+
+            // Вывод выбранного значения в соответствующий элемент на странице
+            var selectedValueDisplayFour = document.getElementById("selectedValueDisplayFour");
+            selectedValueDisplayFour.innerHTML = "4. Принимаете ли вы обезболивающие, такие как парацетамол (ацетаминофен), диклофенак или ибупрофен?: " + selectedValueFour;
+
+            var selectedValueDisplayFive = document.getElementById("selectedValueDisplayFive");
+            selectedValueDisplayFive.innerHTML = "5. Принимаете ли вы сильные обезболивающие, такие как кодеин, трамадол или морфин?: " + selectedValueFive;
+
+        }
+    </script>
+
+
+    <script>
+
+        function result_ases_seven(event) {
+            var radios = document.getElementsByName('intensity_of_pain07');
+            let selectedValueSeven = "";
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                    selectedValueSeven = radios[i].value;
+                    break;
+                }
+            }
+
+            var painScore = Math.round((5 * (10 - selectedValueSeven)));
+            var selectedValueDisplaySeven = document.getElementById("selectedValueDisplaySeven");
+            selectedValueDisplaySeven.innerHTML = "7. Интенсивность боли: " + selectedValueSeven;
+            var selectedValueDisplayPainScore = document.getElementById("selectedValueDisplayPainScore");
+            selectedValueDisplayPainScore.innerHTML = "PainScore: " + " " + painScore + " " + "Points";
+
+            var adlRawScore = 0;
+            for (var i = 0; i < 10; i++) {
+                var radios = document.getElementsByName('question0' + i);
+                var selectedValue = "";
+                for (var j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        selectedValue = radios[j].value;
+                        break;
+                    }
+                }
+                adlRawScore += parseInt(selectedValue);
+            }
+            console.log('ADL Raw Score: ', adlRawScore);
+
+            var adlScore = Math.round((5 * adlRawScore) / 3);
+
+
+            var selectedValueDisplayEight = document.getElementById("selectedValueDisplayEight");
+            selectedValueDisplayEight.innerHTML = "8. ADL Raw Score:: " + " " + adlRawScore + " " + "Points";
+            var selectedValueDisplayEightScore = document.getElementById("selectedValueDisplayEightScore");
+            selectedValueDisplayEightScore.innerHTML = "ADL Score:: " + " " + adlScore + " " + "Points";
+
+            var finalScore = Math.round(painScore + adlScore);
+            var selectedValueDisplayFinal = document.getElementById("selectedValueDisplayFinal");
+            selectedValueDisplayFinal.innerHTML = "Final Score:: " + " " + finalScore + " " + "Points";
+        }
+
+
+
+
+
+    </script>
+
+</body>
+
+
+{% endblock %}

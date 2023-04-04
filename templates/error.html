@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}404 Not Found{% endblock %}
+{% block content %}
+
+<style>
+    .breadcumb-area {
+        background: url(../images/.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        padding-top: 345px;
+        padding-bottom: 100px;
+
+    }
+
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    p {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+
+    /* .hisfull_about_area {
+        padding: 30px 0 0 0;
+    } */
+    .hisfull_about_area {
+        text-align: center;
+    }
+</style>
+<div class="breadcumb-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 txtc  text-center ccase">
+                <div class="brpt">
+                    <h2>404</h2>
+                </div>
+                <div class="breadcumb-inner">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><i class="fas fa-angle-right"></i></li>
+                        <li>404</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hisfull_about_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+    <h1>404 Not Found</h1>
+    <p>Запрошенная вами страница не найдена.</p>
+    <p>Пожалуйста, проверьте URL-адрес или вернитесь на главную страницу. <a href="/">Главная</a>.</p>
+</body>
+{% endblock %}
